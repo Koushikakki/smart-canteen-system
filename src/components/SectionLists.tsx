@@ -1,4 +1,4 @@
-import { Button, SectionList, Text, View, Modal } from 'react-native';
+import { SectionList, Text, View, Modal, TouchableOpacity } from 'react-native';
 import { Section } from '../types/types';
 import ItemCard from './ItemCard';
 import styles from './SectionLists.styles.ts';
@@ -35,13 +35,15 @@ export function SectionLists({ sections, setSections }: props) {
             <Text style={styles.sectionTitle}>
               {section.title} {section.data.length}
             </Text>
-            <Button
-              title="Add"
+            <TouchableOpacity
+              style={styles.addButton}
               onPress={() => {
                 setSelectedSection(section);
                 openModel(section);
               }}
-            />
+            >
+              <Text style={styles.addButtonText}>Add</Text>
+            </TouchableOpacity>
           </View>
         )}
       />

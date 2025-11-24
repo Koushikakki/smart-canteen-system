@@ -37,7 +37,35 @@ export default StyleSheet.create({
         flexDirection : 'row',
         justifyContent: 'space-evenly',
         marginTop: 10,
-    }
+    },
+    addButton: {
+    backgroundColor: '#0a84ff',
+    paddingVertical: 6,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  addButtonText: {
+    color: '#fff',
+    fontWeight: '600',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  cancelButton: {
+    backgroundColor: '#ff0000ff',
+    paddingVertical: 6,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cancelButtonText: {
+    color: '#fff',
+    fontWeight: '600',
+    fontSize: 16,
+    textAlign: 'center',
+  }
 
 
 

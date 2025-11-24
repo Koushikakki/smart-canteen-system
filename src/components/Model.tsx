@@ -1,19 +1,53 @@
 import { useState } from 'react';
-import { Button, Text, TextInput, View } from 'react-native';
+import { Alert, Button, Text, TextInput, View } from 'react-native';
 import styles from './Model.styles';
+import {Section} from '../types/types'
 
 type props = {
   onclose: () => void;
+  section: Section;
+  sections: Section[];
+  setSections: (value: Section[]) => void;
 };
 
-export default function Model({ onclose }: props) {
+export default function Model({ onclose,section,sections,setSections }: props) {
   const [newItem, setNewItem] = useState('');
   const [newItemPrice, setNewItemPrice] = useState('');
+
+
+  const handleAdd = () => {
+  if (!newItem || !newItemPrice) {
+    Alert.alert("Please fill all the fields");
+    return;
+  }
+
+  const updatedSections = sections.map((sec) => {
+    if (sec.id === section.id) {
+      return {
+        ...section,
+        data: [
+          ...section.data,
+          {
+            id: Math.random().toString(),
+            title: newItem,
+            price: Number(newItemPrice),
+            image: null, 
+          }
+        ]
+      };
+    }
+    return section;
+  });
+
+  setSections(updatedSections);
+  onclose();
+};
+
 
   return (
     <View style={styles.modelPage}>
       <View style={styles.modalContainer}>
-        <Text style={styles.title}>Add</Text>
+        <Text style={styles.title}>Add {section.title}</Text>
 
         <View style={styles.inputField}>
           <TextInput 
@@ -29,7 +63,7 @@ export default function Model({ onclose }: props) {
         </View>
 
         <View style= {styles.buttonContainer}>
-          <Button title="Add" />
+          <Button title="Add" onPress={handleAdd}/>
           <Button title="Cancel" onPress={onclose} />
         </View>
       </View>

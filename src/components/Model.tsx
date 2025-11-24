@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Alert, Button, Text, TextInput, View } from 'react-native';
+import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import styles from './Model.styles';
-import {Section} from '../types/types'
+import { Section } from '../types/types';
 
 type props = {
   onclose: () => void;
@@ -10,39 +10,42 @@ type props = {
   setSections: (value: Section[]) => void;
 };
 
-export default function Model({ onclose,section,sections,setSections }: props) {
+export default function Model({
+  onclose,
+  section,
+  sections,
+  setSections,
+}: props) {
   const [newItem, setNewItem] = useState('');
   const [newItemPrice, setNewItemPrice] = useState('');
 
-
   const handleAdd = () => {
-  if (!newItem || !newItemPrice) {
-    Alert.alert("Please fill all the fields");
-    return;
-  }
-
-  const updatedSections = sections.map((sec) => {
-    if (sec.id === section.id) {
-      return {
-        ...section,
-        data: [
-          ...section.data,
-          {
-            id: Math.random().toString(),
-            title: newItem,
-            price: Number(newItemPrice),
-            image: null, 
-          }
-        ]
-      };
+    if (!newItem || !newItemPrice) {
+      Alert.alert('Please fill all the fields');
+      return;
     }
-    return section;
-  });
 
-  setSections(updatedSections);
-  onclose();
-};
+    const updatedSections = sections.map(sec => {
+      if (sec.id === section.id) {
+        return {
+          ...section,
+          data: [
+            ...section.data,
+            {
+              id: Math.random().toString(),
+              title: newItem,
+              price: Number(newItemPrice),
+              image: null,
+            },
+          ],
+        };
+      }
+      return section;
+    });
 
+    setSections(updatedSections);
+    onclose();
+  };
 
   return (
     <View style={styles.modelPage}>
@@ -50,7 +53,7 @@ export default function Model({ onclose,section,sections,setSections }: props) {
         <Text style={styles.title}>Add {section.title}</Text>
 
         <View style={styles.inputField}>
-          <TextInput 
+          <TextInput
             placeholder=" Add New Item"
             value={newItem}
             onChangeText={setNewItem}
@@ -62,9 +65,13 @@ export default function Model({ onclose,section,sections,setSections }: props) {
           />
         </View>
 
-        <View style= {styles.buttonContainer}>
-          <Button title="Add" onPress={handleAdd}/>
-          <Button title="Cancel" onPress={onclose} />
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.addButton} onPress={handleAdd}>
+            <Text style={styles.addButtonText}>ADD</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.cancelButton} onPress={onclose}>
+            <Text style={styles.cancelButtonText}>CANCEL</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

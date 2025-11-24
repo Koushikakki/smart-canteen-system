@@ -13,5 +13,7 @@ export default StyleSheet.create({
         backgroundColor : "#f5f7fb",
         paddingVertical: 8,
         paddingHorizontal: 16,
-    }
+        flexDirection : "row",
+    },
+    
 })

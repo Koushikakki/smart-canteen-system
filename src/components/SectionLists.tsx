@@ -1,9 +1,22 @@
-import { SectionList,Text, View } from "react-native";
+import { Button, SectionList,Text, View ,Modal} from "react-native";
 import { Section } from "../types/types";
 import ItemCard from "./ItemCard";
 import styles from "./SectionLists.styles.ts"
+import { useState } from "react";
+import Model from "./Model.tsx";
 
 export function SectionLists ({sections}: {sections : Section[]}){
+
+    const [model,setModel]=useState(false);
+
+
+    const openModel=()=>{
+        setModel(true);
+    };
+
+    const closeModel = ()=>{
+        setModel(false);
+    }
     return(
         <View>
             <SectionList
@@ -17,7 +30,8 @@ export function SectionLists ({sections}: {sections : Section[]}){
 
                 renderSectionHeader={({section})=>(
                     <View style={styles.sectionHeader}>
-                        <Text style={styles.sectionTitle}>{section.title}</Text>
+                        <Text style={styles.sectionTitle}>{section.title}   {section.data.length}</Text>
+                        <Button title="Add" onPress={openModel} />
                     </View>
                     
                 )
@@ -25,6 +39,10 @@ export function SectionLists ({sections}: {sections : Section[]}){
                 
             />
                 
+            <Modal visible={model} transparent={true} animationType="slide">
+                <Model onclose={closeModel} />
+            </Modal>
+
             
         </View>
     )

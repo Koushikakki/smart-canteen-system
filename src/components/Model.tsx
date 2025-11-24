@@ -1,22 +1,32 @@
-import { useState } from "react";
-import { Button, Text, TextInput, View } from "react-native";
+import { Button, Text, TextInput, View } from 'react-native';
+import styles from './Model.styles';
 
-export default function Model (){
-    const [newItem,setNewItem] = useState("");
-    const [newItemPrice,setNewItemPrice] = useState("");
-    return (
-        <View>
-            <Text>Add</Text>
+type props = {
+  onclose: () => void;
+};
 
-            <View>
-                <TextInput placeholder="Item" value={newItem} onChangeText={setNewItem}/>
-                <TextInput placeholder="Price" value={newItemPrice} onChangeText={setNewItemPrice}/>
-            </View>
+export default function Model({ onclose }: props) {
+  
 
-            <View>
-                <Button title="Add"/>
-                <Button title="Cancel" />
-            </View>
+  return (
+    <View style={styles.modelPage}>
+      <View style={styles.modalContainer}>
+        <Text style={styles.title}>Add</Text>
+
+        <View style={styles.inputField}>
+          <TextInput
+            placeholder=" Add New Item"
+          />
+          <TextInput
+            placeholder="Enter Price"
+          />
         </View>
-    )
+
+        <View style= {styles.buttonContainer}>
+          <Button title="Add" />
+          <Button title="Cancel" onPress={onclose} />
+        </View>
+      </View>
+    </View>
+  );
 }

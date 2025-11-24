@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
 import styles from './Model.styles';
 
@@ -6,7 +7,8 @@ type props = {
 };
 
 export default function Model({ onclose }: props) {
-  
+  const [newItem, setNewItem] = useState('');
+  const [newItemPrice, setNewItemPrice] = useState('');
 
   return (
     <View style={styles.modelPage}>
@@ -14,11 +16,15 @@ export default function Model({ onclose }: props) {
         <Text style={styles.title}>Add</Text>
 
         <View style={styles.inputField}>
-          <TextInput
+          <TextInput 
             placeholder=" Add New Item"
+            value={newItem}
+            onChangeText={setNewItem}
           />
           <TextInput
             placeholder="Enter Price"
+            value={newItemPrice}
+            onChangeText={setNewItemPrice}
           />
         </View>
 

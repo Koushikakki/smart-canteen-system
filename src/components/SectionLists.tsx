@@ -1,54 +1,63 @@
-import { Button, SectionList,Text, View ,Modal} from "react-native";
-import { Section } from "../types/types";
-import ItemCard from "./ItemCard";
-import styles from "./SectionLists.styles.ts"
-import { useState } from "react";
-import Model from "./Model.tsx";
+import { Button, SectionList, Text, View, Modal } from 'react-native';
+import { Section } from '../types/types';
+import ItemCard from './ItemCard';
+import styles from './SectionLists.styles.ts';
+import { useState } from 'react';
+import Model from './Model.tsx';
 
-export function SectionLists ({sections}: {sections : Section[]}){
+type props = {
+  sections: Section[];
+  setSections: (value: Section[]) => void;
+};
 
-    const [model,setModel]=useState(false);
+export function SectionLists({ sections, setSections }: props) {
+  const [model, setModel] = useState(false);
+  const [selectedSection, setSelectedSection] = useState<Section | null>(null);
 
+  const openModel = (section: Section) => {
+    setSelectedSection(section);
+    setModel(true);
+  };
 
-    const openModel=()=>{
-        setModel(true);
-    };
-
-    const closeModel = ()=>{
-        setModel(false);
-    }
-    return(
-        <View>
-            <SectionList
-
-                sections={sections}
-                keyExtractor={(item)=> item.id}
-                stickySectionHeadersEnabled={true}
-                renderItem={({item})=>(
-                    <ItemCard item={item} />
-                )}
-
-                renderSectionHeader={({section})=>(
-                    <View style={styles.sectionHeader}>
-                        <Text style={styles.sectionTitle}>{section.title}   {section.data.length}</Text>
-                        <Button title="Add" onPress={openModel} />
-                    </View>
-                    
-                )
-                }
-                
+  const closeModel = () => {
+    setModel(false);
+    setSelectedSection(null);
+  };
+  return (
+    <View>
+      <SectionList
+        sections={sections}
+        keyExtractor={item => item.id}
+        stickySectionHeadersEnabled={true}
+        renderItem={({ item }) => <ItemCard item={item} />}
+        renderSectionHeader={({ section }) => (
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>
+              {section.title} {section.data.length}
+            </Text>
+            <Button
+              title="Add"
+              onPress={() => {
+                setSelectedSection(section);
+                openModel(section);
+              }}
             />
-                
-            <Modal visible={model} transparent={true} animationType="slide">
-                <Model onclose={closeModel} />
-            </Modal>
+          </View>
+        )}
+      />
 
-            
-        </View>
-    )
+      <Modal visible={model} transparent={true} animationType="slide">
+        {model && selectedSection && (
+          <Model
+            onclose={closeModel}
+            section={selectedSection}
+            sections={sections}
+            setSections={setSections}
+          />
+        )}
+      </Modal>
+    </View>
+  );
 }
-
-
-
 
 export default SectionLists;

@@ -37,6 +37,7 @@ export function SectionLists({ sections, setSections }: props) {
             </Text>
             <TouchableOpacity
               style={styles.addButton}
+              testID='add'
               onPress={() => {
                 setSelectedSection(section);
                 openModel(section);
@@ -48,7 +49,7 @@ export function SectionLists({ sections, setSections }: props) {
         )}
       />
 
-      <Modal visible={model} transparent={true} animationType="slide">
+      <Modal visible={model} transparent={true} animationType="slide" testID='add-model'>
         {model && selectedSection && (
           <Model
             onclose={closeModel}

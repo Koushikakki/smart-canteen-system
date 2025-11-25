@@ -1,25 +1,25 @@
-import { View ,Text} from 'react-native';
-import {
-  SafeAreaProvider,
-} from 'react-native-safe-area-context';
+import { View, Text } from 'react-native';
 import SectionLists from './src/components/SectionLists';
 import { menuData } from './src/data/data';
-import styles from './App.styles'
+import styles from './App.styles';
 import { useState } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function App() {
-
-  const [sections,setSections]=useState(menuData);
+  const [sections, setSections] = useState(menuData);
 
   return (
-    <SafeAreaProvider>
-      
-      <View style={styles.container}>
-      <View><Text style={styles.heading}>Everest Canteen</Text></View>
-      <SectionLists sections={sections}
-      setSections={setSections}/>
-    </View>
-    </SafeAreaProvider>
+
+    <SafeAreaView style={styles.container}>
+        
+      <View>
+        <Text style={styles.heading}>Everest Canteen</Text>
+      </View>
+      <SectionLists sections={sections} setSections={setSections} />
+
+    </SafeAreaView>
+
+    
   );
 }
 export default App;

@@ -3,8 +3,6 @@ export default StyleSheet.create({
     container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: 50,
-    paddingBottom :70
     },
     heading : {
       textAlign:'center',

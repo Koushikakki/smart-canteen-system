@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 import SectionLists from '../../../src/components/SectionLists';
 
 const mockSetSections = jest.fn();
@@ -19,5 +19,17 @@ describe('SectionList component', () => {
     expect(getByText(/Pizza/i)).toBeTruthy();
   });
 
-  
+  test('click Add button opens model',()=>{
+    const {getByTestId} = render(
+      <SectionLists sections={mockSections} setSections={mockSetSections} />,
+    );
+    const button = getByTestId('add');
+    fireEvent.press(button);
+
+    const modal = getByTestId('add-model');
+    expect(modal).toBeTruthy();
+
+  })
+
+
 });

@@ -1,6 +1,7 @@
 import { fireEvent,render } from "@testing-library/react-native"; 
 // import Model from "../../../src/components/Model";
 import SectionLists from "../../../src/components/SectionLists";
+import Model from "../../../src/components/Model";
 
 describe('Model Component',()=>{
     const mockSections = [
@@ -28,5 +29,25 @@ describe('Model Component',()=>{
 
     
       });
+
+      const mockOnclose = jest.fn();
+      test('Add a item on click add in modal',()=>{
+
+        const {getByPlaceholderText,getByText}=render(<Model onclose={mockOnclose} section={mockSections[0]} sections={mockSections} setSections={mockSetSections}/>)
+
+        fireEvent.changeText(getByPlaceholderText("Add New Item"),"Pizza");
+        fireEvent.changeText(getByPlaceholderText("Enter Price"),"10");
+
+        fireEvent.press(getByText('ADD'));
+
+        expect(mockSetSections).toHaveBeenCalledTimes(1);
+
+        const updatedSections  = mockSetSections.mock.calls[0][0];
+
+        expect(updatedSections[0].data.length).toBe(2);
+        expect(updatedSections[0].data[1].title).toBe("Pizza");
+        expect(updatedSections[0].data[1].price).toBe(10);
+
+      })
     
 })

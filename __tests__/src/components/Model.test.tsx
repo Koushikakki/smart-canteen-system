@@ -2,6 +2,7 @@ import { fireEvent,render } from "@testing-library/react-native";
 // import Model from "../../../src/components/Model";
 import SectionLists from "../../../src/components/SectionLists";
 import Model from "../../../src/components/Model";
+import { Alert } from "react-native";
 
 describe('Model Component',()=>{
     const mockSections = [
@@ -47,6 +48,17 @@ describe('Model Component',()=>{
         expect(updatedSections[0].data.length).toBe(2);
         expect(updatedSections[0].data[1].title).toBe("Pizza");
         expect(updatedSections[0].data[1].price).toBe(10);
+
+      });
+
+      test("add an empty item gives alert",()=>{
+
+        jest.spyOn(Alert,"alert");
+        const {getByText}=render(<Model onclose={mockOnclose} section={mockSections[0]} sections={mockSections} setSections={mockSetSections}/>)
+
+        fireEvent.press(getByText("ADD"));
+
+        expect(Alert.alert).toHaveBeenCalledWith("Please fill all the fields");
 
       })
     

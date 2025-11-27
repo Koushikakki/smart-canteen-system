@@ -7,6 +7,7 @@ This Canteen Management System is a simple, scrollable menu app for browsing can
 - Sectioned Menu : Beverages, Breakfast, Main Courses, Snacks, and Desserts.
 - Each item shows : image, title and Price.
 - sections stacked one after another so users scroll down to explore.
+- Add a new item into the list.
 
 ## Tech stack
 

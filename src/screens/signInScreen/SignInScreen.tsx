@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { styles } from './SignInScreen.styles';
-export default function SignInScreen() {
+export default function SignInScreen({navigation} : {navigation:any}) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sign In Your Account</Text>
@@ -17,7 +17,7 @@ export default function SignInScreen() {
         </TouchableOpacity>
       </View>
       <Text style={styles.textPrompt}>Don't have an account?</Text>
-      <TouchableOpacity style={styles.signUpButton}>
+      <TouchableOpacity style={styles.signUpButton} onPress={()=> navigation.navigate('Register')}>
         <Text style={styles.signUpText}>Sign Up</Text>
       </TouchableOpacity>
     </View>

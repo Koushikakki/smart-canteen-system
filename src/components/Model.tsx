@@ -40,7 +40,7 @@ export default function Model({
           ],
         };
       }
-      return section;
+      return sec;
     });
 
     setSections(updatedSections);
@@ -69,7 +69,7 @@ export default function Model({
           <TouchableOpacity style={styles.addButton} onPress={handleAdd}>
             <Text style={styles.addButtonText}>ADD</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.cancelButton} onPress={onclose}>
+          <TouchableOpacity style={styles.cancelButton} testID='cancel-model' onPress={onclose}>
             <Text style={styles.cancelButtonText}>CANCEL</Text>
           </TouchableOpacity>
         </View>

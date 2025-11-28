@@ -29,7 +29,7 @@ describe('SectionList component', () => {
     const modal = getByTestId('add-model');
     expect(modal).toBeTruthy();
 
-  })
+  });
 
 
 });

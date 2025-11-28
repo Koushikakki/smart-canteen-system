@@ -1,13 +1,31 @@
-/**
- * @format
- */
-
-import React from 'react';
-import ReactTestRenderer from 'react-test-renderer';
+import { render } from '@testing-library/react-native';
 import App from '../App';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-test('renders correctly', async () => {
-  await ReactTestRenderer.act(() => {
-    ReactTestRenderer.create(<App />);
+describe('App component', () => {
+  test('renders the app heading', () => {
+    const { getByText } = render(
+      <SafeAreaProvider>
+        <App />
+      </SafeAreaProvider>,
+    );
+    expect(getByText(/Everest Canteen/i)).toBeOnTheScreen();
+  });
+
+  test('renders the sections', () => {
+    const { getByText } = render(
+      <SafeAreaProvider>
+        <App />
+      </SafeAreaProvider>,
+    );
+    expect(getByText(/breakfast/i)).toBeOnTheScreen();
+  });
+  test('renders the items', () => {
+    const { getByText } = render(
+      <SafeAreaProvider>
+        <App />
+      </SafeAreaProvider>,
+    );
+    expect(getByText(/Dosa/i)).toBeOnTheScreen();
   });
 });

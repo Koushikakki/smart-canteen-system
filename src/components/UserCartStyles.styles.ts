@@ -52,4 +52,24 @@ export const styles = StyleSheet.create({
     marginTop: 50,
     color: '#777',
   },
+  quantityContainer: {
+  flexDirection: 'row',
+  alignItems: 'center',
+},
+quantityButton: {
+  width: 30,
+  height: 30,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#ddd',
+  borderRadius: 4,
+},
+quantityButtonText: {
+  fontSize: 18,
+  fontWeight: 'bold',
+},
+quantityText: {
+  marginHorizontal: 8,
+  fontSize: 16,
+},
 });

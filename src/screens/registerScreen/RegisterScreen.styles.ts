@@ -70,4 +70,14 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
     textDecorationLine: 'underline',
   },
+
+  dropdown: {
+  width: '100%',
+  height: 50,
+  borderColor: '#050000ff',
+  borderWidth: 1,
+  borderRadius: 8,
+  paddingHorizontal: 10,
+  backgroundColor: '#fff',
+},
 })

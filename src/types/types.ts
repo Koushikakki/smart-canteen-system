@@ -12,3 +12,11 @@ export type Section = {
     title : string,
     data : Item[];
 };
+
+export type CartItem = {
+    id : string,
+    title : string,
+    price : number,
+    quantity : number
+};
+

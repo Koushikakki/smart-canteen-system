@@ -26,6 +26,7 @@ export default function SignInScreen({
 
       if (userAccountFound) {
         Alert.alert('Login Successful');
+        navigation.navigate('UserHomeScreen');
       } else {
         Alert.alert('Please enter the correct details');
       }
